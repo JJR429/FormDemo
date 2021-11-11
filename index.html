@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Schedule a Demo</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'><link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel='stylesheet' type='text/css' media='screen' href='src/css/main.css'>
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+<script charset="utf-8" type="text/javascript"src="//js.hsforms.net/forms/v2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="container form-page" id="app">
+        <div class="container-item">
+            <h1>Schedule a Demo</h1>
+            <p>See how brithwheel can help you manage attendance, collect tuition and communicate with familes all in one place.</p>
+            <ul class="list-checks">
+                <li class="check-item">
+                    <div class="icon">
+                        <span class="fa-stack">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fas fa-check fa-stack-1x"></i>
+                          </span>
+                    </div>
+                    <div class="item-content">
+                        <strong>Save each member up to 20 hours a month,</strong> focusing their time on studnets, not busywork.
+                    </div>
+                </li>
+                <li class="check-item">
+                    <div class="icon">
+                        <span class="fa-stack">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fas fa-check fa-stack-1x"></i>
+                          </span>
+                    </div>
+                    <div class="item-content">
+                        <strong>Centralize messaging newsletters, and billing</strong> to ensure familes never miss important updates and ensure you get paid on time.
+                    </div>
+                </li>
+                <li class="check-item">
+                    <div class="icon">
+                        <span class="fa-stack">
+                            <i class="far fa-circle fa-stack-2x"></i>
+                            <i class="fas fa-check fa-stack-1x"></i>
+                          </span>
+                    </div>
+                    <div class="item-content">
+                        <strong>Stay safe and COVID-10 compliant</strong> with cantactless check-in, health checks, and room ratio tracking.
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="container-item">
+            <div class="form">
+                
+            <div class="form">
+                <div class="row-flex">
+                    <input type="text" placeholder="First name*" name="firstname" v-model="fields.firstname" v-on:blur="clearMessages">
+                    <input type="text" placeholder="Last name*" name="lastname" v-model="fields.lastname" v-on:blur="clearMessages">
+                </div>
+                <div class="row-flex">
+                    <input type="email" placeholder="Email*" name="email" v-model="fields.email" v-on:blur="clearMessages">
+                </div>
+                <div class="row-flex">
+                    <input type="text" placeholder="Organization name*" name="company" v-model="fields.company" v-on:blur="clearMessages">
+                </div>
+                <div class="row-flex">
+                    <select class="selection" v-model="fields.enrollment_range__c" v-on:blur="clearMessages">
+                        <option disabled value="">Enrollment capacity*</option>
+                        <option value="1-19">1-19</option>
+                        <option value="20-99">20-99</option>
+                        <option value="100+">100+</option>
+                        <option value="Multi-Site">Multi-Site</option>
+                        <option value="Other">Other</option>
+                      </select>
+                </div>
+                <div class="row-flex">
+                    <input type="text" @input="acceptNumber" placeholder="Phone number*" name="phone" v-model="fields.phone" v-on:blur="clearMessages">
+                </div>
+                <div class="row">
+                    <span class="message-responde text-warning text-center" v-if="options.message != ''">{{options.message}}</span>
+                    <span class="message-responde text-danger text-center" v-if="options.error != ''">{{options.error}}</span>
+                    <span class="message-responde text-success text-center" v-if="options.success != ''">{{options.success}}</span>
+                </div>
+                <div class="row-flex">
+                    <button class="button-form" v-on:click="sendData()">Request Your Demo</button>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='src/js/main.js'></script>
+</html>
